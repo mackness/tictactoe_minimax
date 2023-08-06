@@ -32,36 +32,42 @@ public class TicTacToe {
   }
 
   public static void main(String[] args) {
-    Position move;
 
-    while (TicTacToe.State.winner.isEmpty() || Board.isBoardFull(State.board)) {
+    while (true) {
       GameOps.print("");
 
       if (State.currentPlayer.equals(Player.X)) {
-        move =
+        Position move =
             GameOps.parseMove(GameOps.input("Player " + State.currentPlayer + " enter your move:"));
+
+        State.board = Board.nextBoard(State.board, move, State.currentPlayer);
+
+        Board.renderBoard(State.board);
       } else {
-        move = AiPlayer.nextMoveMiniMax(State.board, Player.O);
-      }
+        Position move = AiPlayer.nextMoveMiniMax(State.board, Player.O);
 
-      State.board = Board.nextBoard(State.board, move, State.currentPlayer);
-
-      if (State.currentPlayer.equals(Player.O)) {
         GameOps.print("Player O moved into position " + move);
+
+        State.board = Board.nextBoard(State.board, move, State.currentPlayer);
+
+        Board.renderBoard(State.board);
       }
-      GameOps.print("");
-      Board.renderBoard(State.board);
 
       State.winner = GameOps.getWinner(State.board);
 
-      State.currentPlayer = GameOps.nextPlayer(State.currentPlayer);
-    }
+      if (State.winner.isPresent()) {
+        GameOps.print("");
+        GameOps.print("Game over, player " + State.winner.get() + " wins");
+        break;
+      }
 
-    GameOps.print("");
-    if (State.winner.isPresent()) {
-      GameOps.print("Game over, player " + State.winner.get() + " wins");
-    } else {
-      GameOps.print("Tie Game!");
+      if (Board.isBoardFull(State.board)) {
+        GameOps.print("");
+        GameOps.print("Tie Game!");
+        break;
+      }
+
+      State.currentPlayer = GameOps.nextPlayer(State.currentPlayer);
     }
   }
 }
