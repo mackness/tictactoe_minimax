@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Mack Solomon LLC
+ * Copyright (C) 2023 Mack Solomon
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,11 +20,12 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.tictactoe.TicTacToe.*;
 
-public class ComputerPlayerTest {
+public class AiPlayerTest {
 
   @Test
   public void noWinner() {
-    Position position = AiPlayer.nextMoveMiniMax((BoardFixture.NO_WINNER_BOARD()), Player.O);
+    Position position =
+        AiPlayer.nextMoveMiniMax((BoardFixture.HORIZONTAL_WINNER_BOARD()), Player.O);
     assertEquals(new Position(0, 1).getPosition(), position.getPosition());
   }
 }

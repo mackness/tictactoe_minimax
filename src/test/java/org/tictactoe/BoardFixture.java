@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Mack Solomon LLC
+ * Copyright (C) 2023 Mack Solomon
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -24,7 +24,7 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, Player.X));
+    board.get(0).add(new Cell(0, 0, Player.NONE));
     board.get(0).add(new Cell(0, 0, Player.NONE));
     board.get(0).add(new Cell(0, 0, Player.NONE));
 
