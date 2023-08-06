@@ -47,10 +47,6 @@ public class GameOps {
     return new Position(row, column);
   }
 
-  public static boolean isMoveValid(Position move, List<List<Cell>> board) {
-    return board.get(move.getRow()).get(move.getColumn()).getPlayer().equals(Player.NONE);
-  }
-
   public static Player nextPlayer(Player currentPlayer) {
     if (currentPlayer.equals(Player.X)) {
       return Player.O;
