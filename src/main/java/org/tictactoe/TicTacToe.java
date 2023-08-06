@@ -28,7 +28,7 @@ public class TicTacToe {
   public static class State {
     public static Player currentPlayer = Player.X;
     private static Optional<Player> winner = Optional.empty();
-    private static List<List<Cell>> board = Board.board();
+    private static List<List<Cell>> board = new Board().getBoard();
   }
 
   public static void main(String[] args) {
@@ -45,7 +45,7 @@ public class TicTacToe {
         move = ComputerPlayer.nextMoveRandom(State.board);
       }
 
-      State.board = Board.nextBoard(State.board, move);
+      State.board = Board.nextBoard(State.board, move, State.currentPlayer);
 
       if (State.currentPlayer.equals(Player.O)) {
         GameOps.print("Player O moved into position " + move);

@@ -22,7 +22,7 @@ public class Position {
   private final Integer row;
   private final Integer column;
 
-  public Position(Integer row, Integer column) {
+  public Position(int row, int column) {
     if (row < -1 || row > 3) {
       throw new IllegalArgumentException("Row must be between 0 and 2, got " + row);
     }

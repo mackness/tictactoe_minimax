@@ -17,6 +17,7 @@ package org.tictactoe;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import org.tictactoe.TicTacToe.*;
 
 public class GameOps {
   public static String input(String message) {
@@ -45,18 +46,18 @@ public class GameOps {
     return new Position(row, column);
   }
 
-  public static TicTacToe.Player nextPlayer(TicTacToe.Player currentPlayer) {
-    if (currentPlayer.equals(TicTacToe.Player.X)) {
-      return TicTacToe.Player.O;
+  public static Player nextPlayer(Player currentPlayer) {
+    if (currentPlayer.equals(Player.X)) {
+      return Player.O;
     }
-    return TicTacToe.Player.X;
+    return Player.X;
   }
 
-  private static Integer rowCardinality(List<Cell> row) {
-    HashSet<TicTacToe.Player> rowSet =
+  private static int rowCardinality(List<Cell> row) {
+    HashSet<Player> rowSet =
         row.stream().map(Cell::getPlayer).collect(Collectors.toCollection(HashSet::new));
 
-    if (rowSet.iterator().next() != TicTacToe.Player.NONE) {
+    if (rowSet.iterator().next() != Player.NONE) {
       return rowSet.size();
     } else {
       return -1;
@@ -76,7 +77,7 @@ public class GameOps {
     return vBoard;
   }
 
-  private static Boolean verticalWinner(List<List<Cell>> board) {
+  private static boolean verticalWinner(List<List<Cell>> board) {
     boolean hasWinner = false;
     List<List<Cell>> rotatedBoard = GameOps.rotateBoard90Deg(board);
 
@@ -90,7 +91,7 @@ public class GameOps {
     return hasWinner;
   }
 
-  private static Boolean horizontalWinner(List<List<Cell>> board) {
+  private static boolean horizontalWinner(List<List<Cell>> board) {
     boolean hasWinner = false;
 
     for (int row = 0; row <= board.size() - 1; row++) {
@@ -103,7 +104,7 @@ public class GameOps {
     return hasWinner;
   }
 
-  private static Boolean diagonalWinner(List<List<Cell>> board) {
+  private static boolean diagonalWinner(List<List<Cell>> board) {
     List<Cell> diagonalRow = new ArrayList<>();
 
     diagonalRow.add(board.get(0).get(0));
@@ -113,7 +114,7 @@ public class GameOps {
     return GameOps.rowCardinality(diagonalRow) == 1;
   }
 
-  private static Boolean reverseDiagonalWinner(List<List<Cell>> board) {
+  private static boolean reverseDiagonalWinner(List<List<Cell>> board) {
     List<Cell> reverseDiagonalRow = new ArrayList<>();
 
     reverseDiagonalRow.add(board.get(0).get(2));
@@ -123,7 +124,7 @@ public class GameOps {
     return GameOps.rowCardinality(reverseDiagonalRow) == 1;
   }
 
-  public static Optional<TicTacToe.Player> getWinner(List<List<Cell>> board) {
+  public static Optional<Player> getWinner(List<List<Cell>> board) {
     if (GameOps.horizontalWinner(board)
         || GameOps.verticalWinner(board)
         || GameOps.diagonalWinner(board)

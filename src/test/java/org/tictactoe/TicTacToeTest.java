@@ -19,37 +19,37 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Optional;
 import org.junit.Test;
+import org.tictactoe.TicTacToe.*;
 
 public class TicTacToeTest {
 
   @Test
   public void noWinner() {
-    Optional<TicTacToe.Player> winner = GameOps.getWinner(BoardFixture.NO_WINNER_BOARD());
+    Optional<Player> winner = GameOps.getWinner(BoardFixture.NO_WINNER_BOARD());
     assertEquals(Optional.empty(), winner);
   }
 
   @Test
   public void winnerHorizontal() {
-    Optional<TicTacToe.Player> winner = GameOps.getWinner(BoardFixture.HORIZONTAL_WINNER_BOARD());
-    assertEquals(Optional.of(TicTacToe.Player.X), winner);
+    Optional<Player> winner = GameOps.getWinner(BoardFixture.HORIZONTAL_WINNER_BOARD());
+    assertEquals(Optional.of(Player.X), winner);
   }
 
   @Test
   public void winnerVertical() {
-    Optional<TicTacToe.Player> winner = GameOps.getWinner(BoardFixture.VERTICAL_WINNER_BOARD());
-    assertEquals(Optional.of(TicTacToe.Player.X), winner);
+    Optional<Player> winner = GameOps.getWinner(BoardFixture.VERTICAL_WINNER_BOARD());
+    assertEquals(Optional.of(Player.X), winner);
   }
 
   @Test
   public void winnerDiagonal() {
-    Optional<TicTacToe.Player> winner = GameOps.getWinner(BoardFixture.DIAGONAL_WINNER_BOARD());
-    assertEquals(Optional.of(TicTacToe.Player.X), winner);
+    Optional<Player> winner = GameOps.getWinner(BoardFixture.DIAGONAL_WINNER_BOARD());
+    assertEquals(Optional.of(Player.X), winner);
   }
 
   @Test
   public void reverseWinnerDiagonal() {
-    Optional<TicTacToe.Player> winner =
-        GameOps.getWinner(BoardFixture.REVERSE_DIAGONAL_WINNER_BOARD());
-    assertEquals(Optional.of(TicTacToe.Player.X), winner);
+    Optional<Player> winner = GameOps.getWinner(BoardFixture.REVERSE_DIAGONAL_WINNER_BOARD());
+    assertEquals(Optional.of(Player.X), winner);
   }
 }

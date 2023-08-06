@@ -15,22 +15,17 @@
  */
 package org.tictactoe;
 
+import static org.junit.Assert.assertEquals;
+
+import org.junit.Test;
 import org.tictactoe.TicTacToe.*;
 
-public class Cell {
-  private final Position position;
-  private final Player player;
+public class ComputerPlayerTest {
 
-  public Cell(int row, int column, Player player) {
-    this.position = new Position(row, column);
-    this.player = player;
-  }
-
-  public Player getPlayer() {
-    return this.player;
-  }
-
-  public Position getPosition() {
-    return this.position;
+  @Test
+  public void noWinner() {
+    Position position =
+        ComputerPlayer.nextMoveMiniMax((BoardFixture.DIAGONAL_WINNER_BOARD()), Player.O);
+    assertEquals(new Position(0, 1).getPosition(), position.getPosition());
   }
 }

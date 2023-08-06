@@ -17,25 +17,26 @@ package org.tictactoe;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.tictactoe.TicTacToe.*;
 
 public class BoardFixture {
   public static List<List<Cell>> NO_WINNER_BOARD() {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(1).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(0, 0, TicTacToe.Player.NONE));
+    board.get(1).add(new Cell(0, 0, Player.NONE));
+    board.get(1).add(new Cell(0, 0, Player.NONE));
+    board.get(1).add(new Cell(0, 0, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(2).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(0, 0, TicTacToe.Player.NONE));
+    board.get(2).add(new Cell(0, 0, Player.NONE));
+    board.get(2).add(new Cell(0, 0, Player.NONE));
+    board.get(2).add(new Cell(0, 0, Player.NONE));
 
     return board;
   }
@@ -44,19 +45,19 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.X));
-    board.get(0).add(new Cell(0, 1, TicTacToe.Player.X));
-    board.get(0).add(new Cell(0, 2, TicTacToe.Player.X));
+    board.get(0).add(new Cell(0, 0, Player.X));
+    board.get(0).add(new Cell(0, 1, Player.X));
+    board.get(0).add(new Cell(0, 2, Player.X));
 
     board.add(new ArrayList<>());
-    board.get(1).add(new Cell(1, 0, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(1, 1, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(1, 2, TicTacToe.Player.NONE));
+    board.get(1).add(new Cell(1, 0, Player.NONE));
+    board.get(1).add(new Cell(1, 1, Player.NONE));
+    board.get(1).add(new Cell(1, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(2).add(new Cell(2, 0, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 1, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 2, TicTacToe.Player.NONE));
+    board.get(2).add(new Cell(2, 0, Player.NONE));
+    board.get(2).add(new Cell(2, 1, Player.NONE));
+    board.get(2).add(new Cell(2, 2, Player.NONE));
 
     return board;
   }
@@ -65,19 +66,19 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.X));
-    board.get(0).add(new Cell(0, 1, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 2, TicTacToe.Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.X));
+    board.get(0).add(new Cell(0, 1, Player.NONE));
+    board.get(0).add(new Cell(0, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(1).add(new Cell(1, 0, TicTacToe.Player.X));
-    board.get(1).add(new Cell(1, 1, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(1, 2, TicTacToe.Player.NONE));
+    board.get(1).add(new Cell(1, 0, Player.X));
+    board.get(1).add(new Cell(1, 1, Player.NONE));
+    board.get(1).add(new Cell(1, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(2).add(new Cell(2, 0, TicTacToe.Player.X));
-    board.get(2).add(new Cell(2, 1, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 2, TicTacToe.Player.NONE));
+    board.get(2).add(new Cell(2, 0, Player.X));
+    board.get(2).add(new Cell(2, 1, Player.NONE));
+    board.get(2).add(new Cell(2, 2, Player.NONE));
 
     return board;
   }
@@ -86,19 +87,19 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.X));
-    board.get(0).add(new Cell(0, 1, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 2, TicTacToe.Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.X));
+    board.get(0).add(new Cell(0, 1, Player.NONE));
+    board.get(0).add(new Cell(0, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(1).add(new Cell(1, 0, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(1, 1, TicTacToe.Player.X));
-    board.get(1).add(new Cell(1, 2, TicTacToe.Player.NONE));
+    board.get(1).add(new Cell(1, 0, Player.NONE));
+    board.get(1).add(new Cell(1, 1, Player.X));
+    board.get(1).add(new Cell(1, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(2).add(new Cell(2, 0, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 1, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 2, TicTacToe.Player.X));
+    board.get(2).add(new Cell(2, 0, Player.NONE));
+    board.get(2).add(new Cell(2, 1, Player.NONE));
+    board.get(2).add(new Cell(2, 2, Player.X));
 
     return board;
   }
@@ -107,19 +108,19 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 1, TicTacToe.Player.NONE));
-    board.get(0).add(new Cell(0, 2, TicTacToe.Player.X));
+    board.get(0).add(new Cell(0, 0, Player.NONE));
+    board.get(0).add(new Cell(0, 1, Player.NONE));
+    board.get(0).add(new Cell(0, 2, Player.X));
 
     board.add(new ArrayList<>());
-    board.get(1).add(new Cell(1, 0, TicTacToe.Player.NONE));
-    board.get(1).add(new Cell(1, 1, TicTacToe.Player.X));
-    board.get(1).add(new Cell(1, 2, TicTacToe.Player.NONE));
+    board.get(1).add(new Cell(1, 0, Player.NONE));
+    board.get(1).add(new Cell(1, 1, Player.X));
+    board.get(1).add(new Cell(1, 2, Player.NONE));
 
     board.add(new ArrayList<>());
-    board.get(2).add(new Cell(2, 0, TicTacToe.Player.X));
-    board.get(2).add(new Cell(2, 1, TicTacToe.Player.NONE));
-    board.get(2).add(new Cell(2, 2, TicTacToe.Player.NONE));
+    board.get(2).add(new Cell(2, 0, Player.X));
+    board.get(2).add(new Cell(2, 1, Player.NONE));
+    board.get(2).add(new Cell(2, 2, Player.NONE));
 
     return board;
   }

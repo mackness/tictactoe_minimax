@@ -18,40 +18,53 @@ package org.tictactoe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.tictactoe.TicTacToe.*;
 
 public class Board {
 
-  public static List<List<Cell>> board() {
+  private final List<List<Cell>> board;
+
+  public Board() {
+    this.board = this.makeBoard();
+  }
+
+  public Board(List<List<Cell>> board) {
+    this.board = board;
+  }
+
+  public List<List<Cell>> getBoard() {
+    return board;
+  }
+
+  private List<List<Cell>> makeBoard() {
     List<List<Cell>> board = new ArrayList<>();
 
     for (int row = 0; row <= 2; row++) {
       board.add(new ArrayList<>());
       for (int column = 0; column <= 2; column++) {
-        board.get(row).add(new Cell(row, column, TicTacToe.Player.NONE));
+        board.get(row).add(new Cell(row, column, Player.NONE));
       }
     }
 
     return board;
   }
 
-  public static List<List<Cell>> nextBoard(List<List<Cell>> board, Position move) {
+  public static List<List<Cell>> nextBoard(List<List<Cell>> board, Position move, Player player) {
     return board.stream()
         .map(
-            row -> {
-              return row.stream()
-                  .map(
-                      cell -> {
-                        Position pos = cell.getPosition();
-                        if (pos.getRow().equals(move.getRow())
-                            && pos.getColumn().equals(move.getColumn())) {
-                          return new Cell(
-                              pos.getRow(), pos.getColumn(), TicTacToe.State.currentPlayer);
-                        } else {
-                          return cell;
-                        }
-                      })
-                  .collect(Collectors.toList());
-            })
+            row ->
+                row.stream()
+                    .map(
+                        cell -> {
+                          Position pos = cell.getPosition();
+                          if (pos.getRow().equals(move.getRow())
+                              && pos.getColumn().equals(move.getColumn())) {
+                            return new Cell(pos.getRow(), pos.getColumn(), player);
+                          } else {
+                            return cell;
+                          }
+                        })
+                    .collect(Collectors.toList()))
         .collect(Collectors.toList());
   }
 
@@ -71,9 +84,18 @@ public class Board {
                               return " ";
                           }
                         }))
-        .forEach(
-            row -> {
-              GameOps.print(row.collect(Collectors.toList()).toString());
-            });
+        .map(row -> row.collect(Collectors.toList()).toString())
+        .forEach(GameOps::print);
+  }
+
+  public static boolean isBoardFull(List<List<Cell>> board) {
+    for (int row = 0; row <= board.size() - 1; row++) {
+      for (int column = 0; column <= board.get(row).size() - 1; column++) {
+        if (board.get(row).get(column).getPlayer().equals(Player.NONE)) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 }
