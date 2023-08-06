@@ -89,9 +89,9 @@ public class Board {
   }
 
   public static boolean isBoardFull(List<List<Cell>> board) {
-    for (int row = 0; row <= board.size() - 1; row++) {
-      for (int column = 0; column <= board.get(row).size() - 1; column++) {
-        if (board.get(row).get(column).getPlayer().equals(Player.NONE)) {
+    for (List<Cell> cells : board) {
+      for (Cell cell : cells) {
+        if (cell.getPlayer().equals(Player.NONE)) {
           return false;
         }
       }

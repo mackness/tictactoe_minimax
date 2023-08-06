@@ -17,6 +17,7 @@ package org.tictactoe;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.tictactoe.TicTacToe.*;
 
 public class GameOps {
@@ -44,6 +45,10 @@ public class GameOps {
     }
 
     return new Position(row, column);
+  }
+
+  public static boolean isMoveValid(Position move, List<List<Cell>> board) {
+    return board.get(move.getRow()).get(move.getColumn()).getPlayer().equals(Player.NONE);
   }
 
   public static Player nextPlayer(Player currentPlayer) {
@@ -77,60 +82,69 @@ public class GameOps {
     return vBoard;
   }
 
-  private static boolean verticalWinner(List<List<Cell>> board) {
-    boolean hasWinner = false;
+  private static Optional<Player> verticalWinner(List<List<Cell>> board) {
+    Optional<Player> winner = Optional.empty();
     List<List<Cell>> rotatedBoard = GameOps.rotateBoard90Deg(board);
 
     for (int row = 0; row <= rotatedBoard.size() - 1; row++) {
       if (GameOps.rowCardinality(rotatedBoard.get(row)) == 1) {
-        hasWinner = true;
+        winner = Optional.of(rotatedBoard.get(row).get(0).getPlayer());
         break;
       }
     }
 
-    return hasWinner;
+    return winner;
   }
 
-  private static boolean horizontalWinner(List<List<Cell>> board) {
-    boolean hasWinner = false;
+  private static Optional<Player> horizontalWinner(List<List<Cell>> board) {
+    Optional<Player> winner = Optional.empty();
 
     for (int row = 0; row <= board.size() - 1; row++) {
       if (GameOps.rowCardinality(board.get(row)) == 1) {
-        hasWinner = true;
+        winner = Optional.of(board.get(row).get(0).getPlayer());
         break;
       }
     }
 
-    return hasWinner;
+    return winner;
   }
 
-  private static boolean diagonalWinner(List<List<Cell>> board) {
+  private static Optional<Player> diagonalWinner(List<List<Cell>> board) {
     List<Cell> diagonalRow = new ArrayList<>();
 
     diagonalRow.add(board.get(0).get(0));
     diagonalRow.add(board.get(1).get(1));
     diagonalRow.add(board.get(2).get(2));
 
-    return GameOps.rowCardinality(diagonalRow) == 1;
+    if (GameOps.rowCardinality(diagonalRow) == 1) {
+      return Optional.of(diagonalRow.get(0).getPlayer());
+    } else {
+      return Optional.empty();
+    }
   }
 
-  private static boolean reverseDiagonalWinner(List<List<Cell>> board) {
+  private static Optional<Player> reverseDiagonalWinner(List<List<Cell>> board) {
     List<Cell> reverseDiagonalRow = new ArrayList<>();
 
     reverseDiagonalRow.add(board.get(0).get(2));
     reverseDiagonalRow.add(board.get(1).get(1));
     reverseDiagonalRow.add(board.get(2).get(0));
 
-    return GameOps.rowCardinality(reverseDiagonalRow) == 1;
+    if (GameOps.rowCardinality(reverseDiagonalRow) == 1) {
+      return Optional.of(reverseDiagonalRow.get(0).getPlayer());
+    } else {
+      return Optional.empty();
+    }
   }
 
   public static Optional<Player> getWinner(List<List<Cell>> board) {
-    if (GameOps.horizontalWinner(board)
-        || GameOps.verticalWinner(board)
-        || GameOps.diagonalWinner(board)
-        || GameOps.reverseDiagonalWinner(board)) {
-      return Optional.of(TicTacToe.State.currentPlayer);
-    }
-    return Optional.empty();
+    return Stream.of(
+            GameOps.horizontalWinner(board),
+            GameOps.verticalWinner(board),
+            GameOps.diagonalWinner(board),
+            GameOps.reverseDiagonalWinner(board))
+        .filter(Optional::isPresent)
+        .findFirst()
+        .orElse(Optional.empty());
   }
 }

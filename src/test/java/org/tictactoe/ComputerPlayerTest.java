@@ -24,8 +24,7 @@ public class ComputerPlayerTest {
 
   @Test
   public void noWinner() {
-    Position position =
-        ComputerPlayer.nextMoveMiniMax((BoardFixture.DIAGONAL_WINNER_BOARD()), Player.O);
+    Position position = AiPlayer.nextMoveMiniMax((BoardFixture.NO_WINNER_BOARD()), Player.O);
     assertEquals(new Position(0, 1).getPosition(), position.getPosition());
   }
 }

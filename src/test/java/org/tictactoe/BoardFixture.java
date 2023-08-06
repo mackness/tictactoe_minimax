@@ -24,7 +24,7 @@ public class BoardFixture {
     List<List<Cell>> board = new ArrayList<>();
 
     board.add(new ArrayList<>());
-    board.get(0).add(new Cell(0, 0, Player.NONE));
+    board.get(0).add(new Cell(0, 0, Player.X));
     board.get(0).add(new Cell(0, 0, Player.NONE));
     board.get(0).add(new Cell(0, 0, Player.NONE));
 

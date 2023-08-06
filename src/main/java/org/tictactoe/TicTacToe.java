@@ -32,17 +32,16 @@ public class TicTacToe {
   }
 
   public static void main(String[] args) {
+    Position move;
 
-    while (TicTacToe.State.winner.isEmpty()) {
+    while (TicTacToe.State.winner.isEmpty() || Board.isBoardFull(State.board)) {
       GameOps.print("");
-
-      Position move;
 
       if (State.currentPlayer.equals(Player.X)) {
         move =
             GameOps.parseMove(GameOps.input("Player " + State.currentPlayer + " enter your move:"));
       } else {
-        move = ComputerPlayer.nextMoveRandom(State.board);
+        move = AiPlayer.nextMoveMiniMax(State.board, Player.O);
       }
 
       State.board = Board.nextBoard(State.board, move, State.currentPlayer);
@@ -59,6 +58,10 @@ public class TicTacToe {
     }
 
     GameOps.print("");
-    GameOps.print("Game over, player " + State.winner.get() + " wins");
+    if (State.winner.isPresent()) {
+      GameOps.print("Game over, player " + State.winner.get() + " wins");
+    } else {
+      GameOps.print("Tie Game!");
+    }
   }
 }
